@@ -29,7 +29,7 @@ export const signIn = async (req, res) => {
     return;
   }
 
-  const isValid = await comparePasswords(user.password, req.body.password);
+  const isValid = await comparePasswords(req.body.password, user.password);
 
   if (!isValid) {
     res.status(401);
