@@ -13,17 +13,30 @@ import {
   updatepointPostChecker,
   updatepointPutChecker,
 } from './validators/updatepointvalidator';
+import {
+  createProduct,
+  deleteProduct,
+  getAllProducts,
+  getOneProduct,
+  updateProduct,
+} from './handlers/products';
 const router = Router();
 
-router.get('/product', (req, res) => {
-  res.json({
-    message: 'Hello World',
-  });
-});
-router.get('/product/:id', () => {});
-router.put('/product/:id', productValidationRules(), validateProduct, () => {});
-router.post('/product', productValidationRules(), validateProduct, () => {});
-router.delete('/product/:id', () => {});
+router.get('/product', getAllProducts);
+router.get('/product/:id', getOneProduct);
+router.put(
+  '/product/:id',
+  productValidationRules(),
+  validateProduct,
+  updateProduct
+);
+router.post(
+  '/product',
+  productValidationRules(),
+  validateProduct,
+  createProduct
+);
+router.delete('/product/:id', deleteProduct);
 
 router.get('/update', () => {});
 router.get('/update/:id', () => {});
