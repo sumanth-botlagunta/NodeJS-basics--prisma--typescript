@@ -20,6 +20,13 @@ import {
   getOneProduct,
   updateProduct,
 } from './handlers/products';
+import {
+  createUpdate,
+  deleteUpdate,
+  getAllUpdates,
+  getOneUpdate,
+  updateUpdate,
+} from './handlers/update';
 const router = Router();
 
 router.get('/product', getAllProducts);
@@ -38,11 +45,11 @@ router.post(
 );
 router.delete('/product/:id', deleteProduct);
 
-router.get('/update', () => {});
-router.get('/update/:id', () => {});
-router.put('/update/:id', updatePutChecker(), validateUpdate, () => {});
-router.post('/update', updatePostChecker(), validateUpdate, () => {});
-router.delete('/update/:id', () => {});
+router.get('/update', getAllUpdates);
+router.get('/update/:id', getOneUpdate);
+router.put('/update/:id', updatePutChecker(), validateUpdate, updateUpdate);
+router.post('/update', updatePostChecker(), validateUpdate, createUpdate);
+router.delete('/update/:id', deleteUpdate);
 
 router.get('/updatepoint', () => {});
 router.get('/updatepoint/:id', () => {});

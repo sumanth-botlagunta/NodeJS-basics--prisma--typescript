@@ -16,6 +16,7 @@ model User {
   username  String    @unique
   password  String
   Products   Product[]
+  Updates   Update[]
 }
 
 model Product {
@@ -37,7 +38,7 @@ enum UPDATE_STATUSES {
 model Update {
   id        String          @id @default(uuid())
   createdAt DateTime        @default(now())
-  updatedAt DateTime
+  updatedAt DateTime @updatedAt
   title     String
   body      String
   status     UPDATE_STATUSES @default(IN_PROGRESS)
@@ -46,7 +47,10 @@ model Update {
 
   productId String
   product   Product @relation(fields: [productId], references: [id])
+  userId String
+  user  User @relation(fields: [userId], references: [id])
   updatedPoints UpdatePoint[]
+  @@unique(fields: [productId, id, userId], name: "userProductUpdate")
 }
 
 model UpdatePoint {
