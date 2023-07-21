@@ -39,7 +39,7 @@ model Update {
   updatedAt DateTime
   title     String
   body      String
-  staus     UPDATE_STATUSES @default(IN_PROGRESS)
+  status     UPDATE_STATUSES @default(IN_PROGRESS)
   version   String?
   asset     String?
 
